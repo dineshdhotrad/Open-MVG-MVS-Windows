@@ -1,0 +1,3 @@
+Usage: openMVG_main_ComputeSfM_DataColor
+[-i|--input_file] path to the input SfM_Data scene
+[-o|--output_file] path to the output PLY file

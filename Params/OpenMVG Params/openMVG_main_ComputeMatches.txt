@@ -1,0 +1,39 @@
+Usage: openMVG_main_ComputeMatches
+[-i|--input_file] a SfM_Data file
+[-o|--out_dir path] output path where computed are stored
+
+[Optional]
+[-f|--force] Force to recompute data]
+[-r|--ratio] Distance ratio to discard non meaningful matches
+   0.8: (default).
+[-g|--geometric_model]
+  (pairwise correspondences filtering thanks to robust model estimation):
+   f: (default) fundamental matrix,
+   e: essential matrix,
+   h: homography matrix.
+   a: essential matrix with an angular parametrization,
+   o: orthographic essential matrix.
+   u: upright essential matrix.
+[-v|--video_mode_matching]
+  (sequence matching with an overlap of X images)
+   X: with match 0 with (1->X), ...]
+   2: will match 0 with (1,2), 1 with (2,3), ...
+   3: will match 0 with (1,2,3), 1 with (2,3,4), ...
+[-l]--pair_list] file
+[-n|--nearest_matching_method]
+  AUTO: auto choice from regions type,
+  For Scalar based regions descriptor:
+    BRUTEFORCEL2: L2 BruteForce matching,
+    HNSWL2: L2 Approximate Matching with Hierarchical Navigable Small World graphs,
+    ANNL2: L2 Approximate Nearest Neighbor matching,
+    CASCADEHASHINGL2: L2 Cascade Hashing matching.
+    FASTCASCADEHASHINGL2: (default)
+      L2 Cascade Hashing with precomputed hashed regions
+     (faster than CASCADEHASHINGL2 but use more memory).
+  For Binary based descriptor:
+    BRUTEFORCEHAMMING: BruteForce Hamming matching.
+[-m|--guided_matching]
+  use the found model to improve the pairwise correspondences.
+[-c|--cache_size]
+  Use a regions cache (only cache_size regions will be stored in memory)
+  If not used, all regions will be load in memory.

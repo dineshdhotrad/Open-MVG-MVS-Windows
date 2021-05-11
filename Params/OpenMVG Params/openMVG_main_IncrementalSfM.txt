@@ -1,0 +1,43 @@
+Sequential/Incremental reconstruction
+ Perform incremental SfM (Initial Pair Essential + Resection).
+
+Usage: openMVG_main_IncrementalSfM
+[-i|--input_file] path to a SfM_Data scene
+[-m|--matchdir] path to the matches that corresponds to the provided SfM_Data scene
+[-o|--outdir] path where the output data will be stored
+
+[Optional]
+[-a|--initialPairA] filename of the first image (without path)
+[-b|--initialPairB] filename of the second image (without path)
+[-c|--camera_model] Camera model type for view with unknown intrinsic:
+	 1: Pinhole 
+	 2: Pinhole radial 1
+	 3: Pinhole radial 3 (default)
+	 4: Pinhole radial 3 + tangential 2
+	 5: Pinhole fisheye
+[-f|--refineIntrinsics] Intrinsic parameters refinement option
+	 ADJUST_ALL -> refine all existing parameters (default) 
+	 NONE -> intrinsic parameters are held as constant
+	 ADJUST_FOCAL_LENGTH -> refine only the focal length
+	 ADJUST_PRINCIPAL_POINT -> refine only the principal point position
+	 ADJUST_DISTORTION -> refine only the distortion coefficient(s) (if any)
+	 -> NOTE: options can be combined thanks to '|'
+	 ADJUST_FOCAL_LENGTH|ADJUST_PRINCIPAL_POINT
+		-> refine the focal length & the principal point position
+	 ADJUST_FOCAL_LENGTH|ADJUST_DISTORTION
+		-> refine the focal length & the distortion coefficient(s) (if any)
+	 ADJUST_PRINCIPAL_POINT|ADJUST_DISTORTION
+		-> refine the principal point position & the distortion coefficient(s) (if any)
+[-P|--prior_usage] Enable usage of motion priors (i.e GPS positions) (default: false)
+[-M|--match_file] path to the match file to use (default=matches.f.txt then matches.f.bin).
+[-t|--triangulation_method] triangulation method (default=3):
+	0: DIRECT_LINEAR_TRANSFORM
+	1: L1_ANGULAR
+	2: LINFINITY_ANGULAR
+	3: INVERSE_DEPTH_WEIGHTED_MIDPOINT
+[-r|--resection_method] resection/pose estimation method (default=3):
+	0: DIRECT_LINEAR_TRANSFORM 6Points | does not use intrinsic data
+	1: P3P_KE_CVPR17
+	2: P3P_KNEIP_CVPR11
+	3: P3P_NORDBERG_ECCV18
+	4: UP2P_KUKELOVA_ACCV10 | 2Points | upright camera
